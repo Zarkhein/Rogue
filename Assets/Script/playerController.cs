@@ -7,7 +7,6 @@ public class playerController : MonoBehaviour
     [Header("Component")]
     Rigidbody2D rb;
     Animator anim;    
-    public float speed;
 
     [Header("Stat")]
     [SerializeField]
@@ -23,12 +22,14 @@ public class playerController : MonoBehaviour
     public LayerMask whatIsEnemy;
     public float range;
 
+    [Header("Weapon")]
+    [SerializeField]
+    public float damage;
+
     [Header("Knife")]
     [SerializeField]
     private float knifeTime;
     [SerializeField] float timeBetweenKnife;
-    public GameObject arrow;
-    public Transform LaunchOffset;
 
 
     [Header("Argents")]
@@ -63,7 +64,6 @@ public class playerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        Shoot();
     }
 
     private void Attack()
@@ -81,25 +81,6 @@ public class playerController : MonoBehaviour
         }
     }
 
-
-    void Shoot()
-    {
-        if(Input.GetKey("f"))
-        {
-            if(Time.time >= knifeTime)
-            {
-                Debug.Log("Shoot");
-                knifeTime = Time.time + timeBetweenKnife;
-                GameObject newArrow = Instantiate(arrow, LaunchOffset.transform.position, Quaternion.identity);
-                newArrow.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * Time.fixedDeltaTime, 0f);
-            }
-            else
-            {
-                Debug.Log("Rechargement");
-            }
-            
-        }
-    }
 
     void Move()
     {
