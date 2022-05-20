@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public GameObject shopMenu;
-    public Button btnShopMoney, btnShopHealth, btnShopRange, btnShopExit;
+    public Button btnShopMoney, btnShopHealth, btnShopRange, btnShopExit, btnShopDamage;
     public Text textMoneyPlayer;
 
     public string txtPlayer;
@@ -19,6 +19,7 @@ public class Shop : MonoBehaviour
         btnShopHealth.onClick.AddListener(buyHealth);
         btnShopRange.onClick.AddListener(buyRange);
         btnShopExit.onClick.AddListener(shopExit);
+        btnShopDamage.onClick.AddListener(buyDamage);
     }
 
     private void shopExit()
@@ -42,6 +43,13 @@ public class Shop : MonoBehaviour
     void buyRange()
     {
         playerController.instance.range += 1;
+        playerController.instance.moneyPlayer -= 50;
+        textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+    }
+
+    void buyDamage()
+    {
+        playerController.instance.damage += 25;
         playerController.instance.moneyPlayer -= 50;
         textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
     }
