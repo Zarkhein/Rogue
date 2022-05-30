@@ -34,9 +34,6 @@ public class playerController : MonoBehaviour
 
     [Header("Argents")]
     public int moneyPlayer;
-    
-
-
 
     public static playerController instance;
 
@@ -58,7 +55,6 @@ public class playerController : MonoBehaviour
     void Update()
     {
         Attack();
-        
     }
 
     private void FixedUpdate()

@@ -29,7 +29,7 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        openShop();
+        //openShop();
     }
 
     void buyMoney()
@@ -64,10 +64,23 @@ public class Shop : MonoBehaviour
 
     void openShop()
     {
-        if (Input.GetKey("p"))
+        shopMenu.SetActive(true);
+    }
+
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Shop")
         {
-            shopMenu.SetActive(true);
+            Debug.Log("Bienvenue dans le shop");
+            openShop();
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("Aurevoir!");
+        shopExit();
     }
 
 }
