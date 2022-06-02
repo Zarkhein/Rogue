@@ -39,8 +39,6 @@ public class bossEnemy : MonoBehaviour
         transform.Translate(Vector2.up * Vitesse * Time.deltaTime);
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "fireball(Clone)")

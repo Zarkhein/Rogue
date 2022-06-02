@@ -77,6 +77,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    
 
     void Move()
     {
