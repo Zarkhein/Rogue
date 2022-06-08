@@ -22,23 +22,26 @@ public class allPotionsTime : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        switch (effectPotion)
+        if(other.gameObject.name == "Player")
         {
-            //effet de heal
-            case 1:
-                Debug.Log("Debut de l'effet de soin");
-                if (!TimerStarted2) TimerStarted2 = true;
+            switch (effectPotion)
+            {
+                //effet de heal
+                case 1:
+                    Debug.Log("Debut de l'effet de soin");
+                    if (!TimerStarted2) TimerStarted2 = true;
 
-                break;
-            //effet de speed
-            case 2:
-                //playerController.instance.moveSpeed += 10;
-                Debug.Log("Debut de l'effet");
-                if (!TimerStarted) TimerStarted = true;
-                playerController.instance.moveSpeed += vitesse;
-                break;
-            default:
-                break;
+                    break;
+                //effet de speed
+                case 2:
+                    //playerController.instance.moveSpeed += 10;
+                    Debug.Log("Debut de l'effet");
+                    if (!TimerStarted) TimerStarted = true;
+                    playerController.instance.moveSpeed += vitesse;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

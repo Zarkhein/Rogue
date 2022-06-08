@@ -9,15 +9,24 @@ public class Weapon : MonoBehaviour
 
     public GameObject projectile;
     public Transform shotPoint;
+    public static Weapon instance;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    public bool skillLearned1 = false;
+    public bool skillLearned2 = false; 
+
     void Update()
     {
-        Shot();
-        
+        Shot();        
     }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     void Shot()
     {
@@ -35,11 +44,26 @@ public class Weapon : MonoBehaviour
                 Instantiate(projectile, shotPoint.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
-            if (Input.GetKey("m"))
+            if(skillLearned1 == true)
             {
-
-                StartCoroutine(doubleShot());
-                timeBtwShots = startTimeBtwShots;
+                if (Input.GetKey("m"))
+                {
+                    StartCoroutine(doubleShot());
+                    timeBtwShots = startTimeBtwShots;
+                }
+            }
+            if (skillLearned2 == true)
+            {
+                if (Input.GetKey("m"))
+                {
+                    skillLearned1 = false;
+                    StartCoroutine(tripleShoot());
+                    timeBtwShots = startTimeBtwShots;
+                }
+            }
+            else
+            {
+                print("Vous n'avais pas la connaissance requise...");
             }
         }
         else
@@ -51,6 +75,15 @@ public class Weapon : MonoBehaviour
 
     IEnumerator doubleShot()
     {
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        yield return new WaitForSeconds(.1f);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+    }
+
+    IEnumerator tripleShoot()
+    {
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        yield return new WaitForSeconds(.1f);
         Instantiate(projectile, shotPoint.position, transform.rotation);
         yield return new WaitForSeconds(.1f);
         Instantiate(projectile, shotPoint.position, transform.rotation);

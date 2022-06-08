@@ -22,6 +22,13 @@ public class bossEnemy : MonoBehaviour
 
     public Transform player;
     private Vector2 mouvement;
+
+    [Header("Weapon")]
+    [SerializeField]
+    public GameObject prefab;
+    public float startTimeBtwShots;
+    private float timeBtwShots;
+    public Transform shotPoint;
     
     // Start is called before the first frame update
     void Start()
@@ -37,10 +44,27 @@ public class bossEnemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle + offSet);
         mouvement = direction;
         transform.Translate(Vector2.up * Vitesse * Time.deltaTime);
+        Shoot();
     }
+
+    private void Shoot()
+    {
+        if(timeBtwShots <= 0)
+        {
+            Instantiate(prefab, shotPoint.position, transform.rotation);
+            timeBtwShots = startTimeBtwShots;
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
+
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.name == "fireball(Clone)")
         {
             Destroy(collision.gameObject);
@@ -52,6 +76,7 @@ public class bossEnemy : MonoBehaviour
                 textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
             }
         }
+        */
         if(collision.gameObject.name == "Player")
         {
             Debug.Log("Le boss touche le joueur");

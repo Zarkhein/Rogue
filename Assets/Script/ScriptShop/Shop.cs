@@ -20,6 +20,7 @@ public class Shop : MonoBehaviour
         btnShopRange.onClick.AddListener(buyRange);
         btnShopExit.onClick.AddListener(shopExit);
         btnShopDamage.onClick.AddListener(buyDamage);
+
     }
 
     private void shopExit()

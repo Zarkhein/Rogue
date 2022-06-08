@@ -11,7 +11,7 @@ public class scriptIa : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,6 +39,7 @@ public class scriptIa : MonoBehaviour
 
     private void Deplacement()
     {
-         transform.Translate(Vector2.left * Time.deltaTime);
+        transform.Translate(Vector2.left * Time.deltaTime);
     }
+
 }

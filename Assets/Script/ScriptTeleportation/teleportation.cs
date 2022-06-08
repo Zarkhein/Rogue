@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class healthSystem : MonoBehaviour
+public class teleportation : MonoBehaviour
 {
-    public Text healthText;
-
-
+   
     // Start is called before the first frame update
     void Start()
     {
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = playerController.instance.currentHealth.ToString();
+        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("hello");
+        playerController.instance.transform.position = new Vector2(-110, 5);
     }
 }
