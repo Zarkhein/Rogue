@@ -64,7 +64,7 @@ public class bossEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
+        
         if (collision.gameObject.name == "fireball(Clone)")
         {
             Destroy(collision.gameObject);
@@ -76,7 +76,7 @@ public class bossEnemy : MonoBehaviour
                 textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
             }
         }
-        */
+        
         if(collision.gameObject.name == "Player")
         {
             Debug.Log("Le boss touche le joueur");

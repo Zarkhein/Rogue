@@ -16,6 +16,7 @@ public class SkillTree : MonoBehaviour
         skillTree.SetActive(false);
         btn_mainSkill.onClick.AddListener(doubleShoot);
         btn_doubleshoot.onClick.AddListener(tripleShoot);
+        btn_doubleshoot.interactable = false;
     }
 
     void tripleShoot()
@@ -23,6 +24,10 @@ public class SkillTree : MonoBehaviour
         Weapon.instance.skillLearned2 = true;
     }
 
+    void debugfunction()
+    {
+        Debug.Log("le pointer est dans le btn");
+    }
 
     void doubleShoot()
     {
@@ -32,11 +37,17 @@ public class SkillTree : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        skillTree.SetActive(true);
+        if(collision.gameObject.name == "Player")
+        {
+            skillTree.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        skillTree.SetActive(false);
+        if (collision.gameObject.name == "Player")
+        {
+            skillTree.SetActive(false);
+        }
     }
 }

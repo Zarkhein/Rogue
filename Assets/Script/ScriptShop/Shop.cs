@@ -71,7 +71,8 @@ public class Shop : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Shop")
+        print("Test");
+        if(collision.gameObject.name == "Player")
         {
             Debug.Log("Bienvenue dans le shop");
             openShop();

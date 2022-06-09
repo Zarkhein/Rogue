@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        Shot();        
+        Shot();
     }
 
     private void Awake()
@@ -52,11 +52,10 @@ public class Weapon : MonoBehaviour
                     timeBtwShots = startTimeBtwShots;
                 }
             }
-            if (skillLearned2 == true)
+            if (skillLearned2 == true && skillLearned1 == true)
             {
                 if (Input.GetKey("m"))
                 {
-                    skillLearned1 = false;
                     StartCoroutine(tripleShoot());
                     timeBtwShots = startTimeBtwShots;
                 }

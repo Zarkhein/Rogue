@@ -8,12 +8,14 @@ public class projectileBehavior : MonoBehaviour
     [Header("Vitesse")]
     public float vitesseY;
     public float vitesseX;
+    private int lifeTime = 5;
 
-    
+
+
 
     private void Start()
     {
-
+        Invoke("DestroyProjectile", lifeTime);
     }
     // Update is called once per frame
     void Update()
@@ -29,10 +31,12 @@ public class projectileBehavior : MonoBehaviour
             Debug.Log("Hit le player");
             playerController.instance.currentHealth -= 1;
         }
-        if(collision.gameObject.name == "border" && gameObject.name == "fire(Clone)")
+    }
+    void DestroyProjectile()
+    {
+        if(gameObject.name == "fire(Clone)")
         {
             Destroy(gameObject);
-            Debug.Log("Hit de la border");
         }
     }
 }
