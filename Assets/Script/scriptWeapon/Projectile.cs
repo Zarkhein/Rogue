@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        Invoke("DestroyProjectile", lifeTime);
+        Invoke("DestroyProjectile", Weapon.instance.lifeTime);
     }
     void Update()
     {

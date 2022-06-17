@@ -13,6 +13,7 @@ public class allPotionsTime : MonoBehaviour
 
 
     private bool TimerStarted = false;
+    private bool checkSpeed;
     private bool TimerStarted2 = false;
 
     private float tickTimer = 0f;
@@ -22,23 +23,31 @@ public class allPotionsTime : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        switch (effectPotion)
+        if(other.gameObject.name == "Player")
         {
-            //effet de heal
-            case 1:
-                Debug.Log("Debut de l'effet de soin");
-                if (!TimerStarted2) TimerStarted2 = true;
+            switch (effectPotion)
+            {
+                //effet de heal
+                case 1:
+                    Debug.Log("Debut de l'effet de soin");
+                    if (!TimerStarted2) TimerStarted2 = true;
 
-                break;
-            //effet de speed
-            case 2:
-                //playerController.instance.moveSpeed += 10;
-                Debug.Log("Debut de l'effet");
-                if (!TimerStarted) TimerStarted = true;
-                playerController.instance.moveSpeed += vitesse;
-                break;
-            default:
-                break;
+                    break;
+                //effet de speed
+                case 2:
+                    //playerController.instance.moveSpeed += 10;
+                    Debug.Log("Debut de l'effet");
+                    if (!TimerStarted) TimerStarted = true;
+                    if(TimerStarted == true && checkSpeed == false)
+                    {
+                        playerController.instance.moveSpeed += vitesse;
+                        checkSpeed = true;
+                    }
+
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -52,11 +61,18 @@ public class allPotionsTime : MonoBehaviour
                 tickTimer -= tick_timer_max;
                 tick++;
                 playerController.instance.currentHealth += healthIncreasePerSecond;
+                if(playerController.instance.currentHealth >= playerController.instance.maxHealth)
+                {
+                    Debug.Log("Vous avez la vie au max");
+                    playerController.instance.currentHealth = playerController.instance.maxHealth;
+                }
                 if (tick == timeEffect)
                 {
                     TimerStarted2 = false;
+                    checkSpeed = false;
                     Debug.Log("Stop");
                     Destroy(gameObject);
+                    
                 }
             }
         }
@@ -65,8 +81,10 @@ public class allPotionsTime : MonoBehaviour
     private float _timer;
     void PlayerSpeed()
     {
+        
         if (TimerStarted)
         {
+            
             _timer += Time.deltaTime;
             if (_timer >= timeEffect)
             {

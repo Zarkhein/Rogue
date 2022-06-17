@@ -34,9 +34,6 @@ public class playerController : MonoBehaviour
 
     [Header("Argents")]
     public int moneyPlayer;
-    
-
-
 
     public static playerController instance;
 
@@ -58,7 +55,6 @@ public class playerController : MonoBehaviour
     void Update()
     {
         Attack();
-        
     }
 
     private void FixedUpdate()
@@ -81,6 +77,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    
 
     void Move()
     {
@@ -143,5 +140,13 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "bullet(Clone)")
+        {
+            playerController.instance.currentHealth -= 1;
+            Destroy(collision.gameObject);
+        }
+    }
 
 }

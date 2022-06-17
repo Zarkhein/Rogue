@@ -27,7 +27,7 @@ public class generatorBullet : MonoBehaviour
     {
         for (int i = 0; i < 999; i++)
         {
-            Instantiate(bullet, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+            Instantiate(bullet, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+0.20f, 0), Quaternion.identity);
             yield return new WaitForSeconds(1);
         }
     }

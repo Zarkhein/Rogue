@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
     public GameObject shopMenu;
-    public Button btnShopMoney, btnShopHealth, btnShopRange, btnShopExit;
+    public Button btnShopMoney, btnShopHealth, btnShopRange, btnShopExit, btnShopDamage;
     public Text textMoneyPlayer;
 
     public string txtPlayer;
@@ -19,6 +20,9 @@ public class Shop : MonoBehaviour
         btnShopHealth.onClick.AddListener(buyHealth);
         btnShopRange.onClick.AddListener(buyRange);
         btnShopExit.onClick.AddListener(shopExit);
+        btnShopDamage.onClick.AddListener(buyDamage);
+        
+
     }
 
     private void shopExit()
@@ -28,7 +32,7 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        openShop();
+        //openShop();
     }
 
     void buyMoney()
@@ -41,7 +45,21 @@ public class Shop : MonoBehaviour
 
     void buyRange()
     {
-        playerController.instance.range += 1;
+        if(playerController.instance.moneyPlayer >= 50)
+        {
+            Weapon.instance.lifeTime += 0.25f;
+            playerController.instance.moneyPlayer -= 50;
+            textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+        }
+        else
+        {
+            Debug.Log("Vous n'avez pas assez d'argent");
+        }
+    }
+
+    void buyDamage()
+    {
+        playerController.instance.damage += 25;
         playerController.instance.moneyPlayer -= 50;
         textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
     }
@@ -56,10 +74,34 @@ public class Shop : MonoBehaviour
 
     void openShop()
     {
-        if (Input.GetKey("p"))
+        shopMenu.SetActive(true);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("The cursor entered the selectable UI element.");
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("Test");
+        if(collision.gameObject.name == "Player")
         {
-            shopMenu.SetActive(true);
+            Debug.Log("Bienvenue dans le shop");
+            openShop();
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("Aurevoir!");
+        shopExit();
+    }
+    
+    public void onEnter()
+    {
+        Debug.Log("le pointer est la");
     }
 
 }

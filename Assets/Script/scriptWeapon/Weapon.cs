@@ -9,15 +9,27 @@ public class Weapon : MonoBehaviour
 
     public GameObject projectile;
     public Transform shotPoint;
+    public static Weapon instance;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    [Header("Stats bullet")]
+    public float lifeTime;
+
+    public bool skillLearned1 = false;
+    public bool skillLearned2 = false; 
+
     void Update()
     {
         Shot();
-        
     }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     void Shot()
     {
@@ -35,14 +47,48 @@ public class Weapon : MonoBehaviour
                 Instantiate(projectile, shotPoint.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
-
-
+            if(skillLearned1 == true)
+            {
+                if (Input.GetKey("m"))
+                {
+                    StartCoroutine(doubleShot());
+                    timeBtwShots = startTimeBtwShots;
+                }
+            }
+            if (skillLearned2 == true && skillLearned1 == true)
+            {
+                if (Input.GetKey("m"))
+                {
+                    StartCoroutine(tripleShoot());
+                    timeBtwShots = startTimeBtwShots;
+                }
+            }
+            else
+            {
+                print("Vous n'avais pas la connaissance requise...");
+            }
         }
         else
         {
             Debug.Log("Reloading");
             timeBtwShots -= Time.deltaTime;
         }
+    }
+
+    IEnumerator doubleShot()
+    {
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        yield return new WaitForSeconds(.1f);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+    }
+
+    IEnumerator tripleShoot()
+    {
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        yield return new WaitForSeconds(.1f);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        yield return new WaitForSeconds(.1f);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
     }
 
 
