@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SkillTree : MonoBehaviour
 {
     public GameObject skillTree;
-    public Button btn_mainSkill, btn_doubleshoot;
+    public Button btn_mainSkill, btn_doubleshoot, btn_dash;
 
 
     private void Start()
@@ -16,7 +16,9 @@ public class SkillTree : MonoBehaviour
         skillTree.SetActive(false);
         btn_mainSkill.onClick.AddListener(doubleShoot);
         btn_doubleshoot.onClick.AddListener(tripleShoot);
+        btn_dash.onClick.AddListener(dashSkill);
         btn_doubleshoot.interactable = false;
+        btn_dash.interactable = false;
     }
 
     void tripleShoot()
@@ -24,16 +26,18 @@ public class SkillTree : MonoBehaviour
         Weapon.instance.skillLearned2 = true;
     }
 
-    void debugfunction()
-    {
-        Debug.Log("le pointer est dans le btn");
-    }
-
     void doubleShoot()
     {
         Weapon.instance.skillLearned1 = true;
         btn_doubleshoot.interactable = true;
+        btn_dash.interactable = true;
     }
+
+    void dashSkill()
+    {
+        dashPlayer.instance.dashSkill = true;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

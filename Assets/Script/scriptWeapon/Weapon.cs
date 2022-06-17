@@ -14,6 +14,9 @@ public class Weapon : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    [Header("Stats bullet")]
+    public float lifeTime;
+
     public bool skillLearned1 = false;
     public bool skillLearned2 = false; 
 

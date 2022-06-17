@@ -10,7 +10,7 @@ public class informationPlayer : MonoBehaviour
     private float timeBtwOpen;
     private float startTimeBtwOpen = 1f;
 
-    public Text lifeStats, speedStats, forceStats, moneyStats;
+    public Text lifeStats, speedStats, forceStats, rangeStats;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class informationPlayer : MonoBehaviour
         lifeStats.text = playerController.instance.currentHealth.ToString() + "/" + playerController.instance.maxHealth.ToString();
         speedStats.text = playerController.instance.moveSpeed.ToString();
         forceStats.text = playerController.instance.damage.ToString();
-        moneyStats.text = playerController.instance.moneyPlayer.ToString();
+        rangeStats.text = Weapon.instance.lifeTime.ToString() + "m";
     }
     private void FixedUpdate()
     {

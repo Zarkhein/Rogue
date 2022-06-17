@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Shop : MonoBehaviour
         btnShopRange.onClick.AddListener(buyRange);
         btnShopExit.onClick.AddListener(shopExit);
         btnShopDamage.onClick.AddListener(buyDamage);
+        
 
     }
 
@@ -43,9 +45,16 @@ public class Shop : MonoBehaviour
 
     void buyRange()
     {
-        playerController.instance.range += 1;
-        playerController.instance.moneyPlayer -= 50;
-        textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+        if(playerController.instance.moneyPlayer >= 50)
+        {
+            Weapon.instance.lifeTime += 0.25f;
+            playerController.instance.moneyPlayer -= 50;
+            textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+        }
+        else
+        {
+            Debug.Log("Vous n'avez pas assez d'argent");
+        }
     }
 
     void buyDamage()
@@ -68,7 +77,12 @@ public class Shop : MonoBehaviour
         shopMenu.SetActive(true);
     }
 
-    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("The cursor entered the selectable UI element.");
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print("Test");
@@ -83,6 +97,11 @@ public class Shop : MonoBehaviour
     {
         Debug.Log("Aurevoir!");
         shopExit();
+    }
+    
+    public void onEnter()
+    {
+        Debug.Log("le pointer est la");
     }
 
 }

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3205431906896741039}
   - component: {fileID: 3436454608064995402}
   - component: {fileID: 3205431906896741073}
-  - component: {fileID: 3134280782559547917}
   - component: {fileID: 3205431906896741074}
   m_Layer: 0
   m_Name: Player
@@ -186,25 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286b474013ab981498741c26dcf6c0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyPoint: {fileID: -8155387615878495743, guid: 677f355ad3c73c24cb02f7a4fdb67102, type: 3}
-  halfPoint: {fileID: 8172533787872708466, guid: 677f355ad3c73c24cb02f7a4fdb67102, type: 3}
-  fullPoint: {fileID: 7064073587598392352, guid: 677f355ad3c73c24cb02f7a4fdb67102, type: 3}
-  life1: {fileID: 0}
-  life2: {fileID: 0}
-  life3: {fileID: 0}
---- !u!114 &3134280782559547917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3205431906896741035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d696346a286d44244b8bc7fc7d576a58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nbr: 1
+  healthText: {fileID: 0}
 --- !u!95 &3205431906896741074
 Animator:
   serializedVersion: 3
@@ -324,6 +305,9 @@ MonoBehaviour:
   projectile: {fileID: 2600263664572264565, guid: 22ba732914826d048a4ece33bb5d2218, type: 3}
   shotPoint: {fileID: 3205431907416134583}
   startTimeBtwShots: 0.5
+  lifeTime: 0
+  skillLearned1: 0
+  skillLearned2: 0
 --- !u!1 &3205431906948395236
 GameObject:
   m_ObjectHideFlags: 0
