@@ -17,6 +17,7 @@ public class totemOfTower : MonoBehaviour
     public Text textMoneyPlayer;
     private int moneyRand;
 
+
     void Start()
     {
         moneyRand = Random.Range(0, dropMoney);
