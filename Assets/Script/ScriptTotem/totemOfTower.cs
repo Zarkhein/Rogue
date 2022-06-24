@@ -35,6 +35,7 @@ public class totemOfTower : MonoBehaviour
                 Destroy(gameObject);
                 playerController.instance.moneyPlayer += moneyRand;
                 textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+                scriptWave.instance.totemLive -= 1;
             }
         }
 
