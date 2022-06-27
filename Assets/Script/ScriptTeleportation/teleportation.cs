@@ -17,6 +17,10 @@ public class teleportation : MonoBehaviour
             case 2:
                 spawnShop();
                 break;
+            case 3:
+                spawnNextStage();
+                break;
+
             default:
 
                 break;
@@ -38,6 +42,14 @@ public class teleportation : MonoBehaviour
             }
         }
 
+        void spawnNextStage()
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                //coord
+                playerController.instance.transform.position = new Vector3(-58, -57, 0);
+            }
+        }
         
     }
 }
