@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class teleportation : MonoBehaviour
 {
-    public Transform spawnTp, spawnTpShop;
     public int lstTp;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +26,7 @@ public class teleportation : MonoBehaviour
         {
             if (collision.gameObject.name == "Player")
             {
-                playerController.instance.transform.position = spawnTp.position;
+                playerController.instance.transform.position = new Vector3(-70, -5, 0);
             }
         }
 
@@ -35,7 +34,7 @@ public class teleportation : MonoBehaviour
         {
             if (collision.gameObject.name == "Player")
             {
-                playerController.instance.transform.position = spawnTpShop.position;
+                playerController.instance.transform.position = new Vector3(-23, -3, 0);
             }
         }
 
